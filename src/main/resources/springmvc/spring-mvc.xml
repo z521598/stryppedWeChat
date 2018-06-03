@@ -13,9 +13,9 @@
     http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
      
     <!-- 扫描controller（controller层注入） -->
-   <context:component-scan base-package="com.lin.controller" use-default-filters="false">
-        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
-        <context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
+   <context:component-scan base-package="com.jlu.**.web" use-default-filters="false">
+       <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+       <context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
     </context:component-scan>
    
    

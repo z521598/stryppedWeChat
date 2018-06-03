@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:aop="http://www.springframework.org/schema/aop"
-	xsi:schemaLocation="  
-           http://www.springframework.org/schema/beans  
-           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  
-           http://www.springframework.org/schema/aop  
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://www.springframework.org/schema/aop
            http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
-           http://www.springframework.org/schema/context  
-           http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
            
     <!-- 以下 validator  ConversionService 在使用 mvc:annotation-driven 会 自动注册-->
     <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
@@ -26,7 +26,7 @@
     
     
     	 <!-- 扫描注解Bean -->
-    <context:component-scan base-package="com.lin.service">
+    <context:component-scan base-package="com.jlu.**">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
     
@@ -65,16 +65,39 @@
 	<!-- 自动扫描了所有的XxxxMapper.xml对应的mapper接口文件，这样就不用一个一个手动配置Mpper的映射了，只要Mapper接口类和Mapper映射文件对应起来就可以了。 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage"
-			value="com.lin.dao" />
+			value="com.jlu.**.dao" />
 	</bean>
 
     <!-- 配置Mybatis的文件 ，mapperLocations配置**Mapper.xml文件位置，configLocation配置mybatis-config文件位置-->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-        <property name="mapperLocations" value="classpath*:com/lin/mapper/**/*.xml"/>  
+        <property name="mapperLocations" value="classpath*:com/jlu/**/dao/*.xml"/>
 		<property name="configLocation" value="classpath:mybatis/mybatis-config.xml" />
-		<!-- <property name="typeAliasesPackage" value="com.tiantian.ckeditor.model" 
+		<!-- <property name="typeAliasesPackage" value="com.tiantian.ckeditor.model"
 			/> -->
 	</bean>
+	<!-- 事物管理器 对mybatis操作数据库事务控制，spring使用的是jdbc的事务控制类-->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	<!-- 通知 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<!-- 传播行为 -->
+			<tx:method name="save*" propagation="REQUIRED"/>
+			<tx:method name="delete*" propagation="REQUIRED"/>
+			<tx:method name="del*" propagation="REQUIRED"/>
+			<tx:method name="insert*" propagation="REQUIRED"/>
+			<tx:method name="update*" propagation="REQUIRED"/>
+			<tx:method name="upd*" propagation="REQUIRED"/>
+			<tx:method name="find*" propagation="REQUIRED"/>
+			<tx:method name="get*" propagation="REQUIRED"/>
+			<tx:method name="select*" propagation="REQUIRED"/>
+			<tx:method name="sel*" propagation="REQUIRED"/>
+		</tx:attributes>
+	</tx:advice>
 
+	<aop:config>
+		<aop:advisor advice-ref="txAdvice" pointcut="execution(* com.lsq.meituan.service.*.*(..))"/>
+	</aop:config>
 </beans>

@@ -1,9 +1,8 @@
-package com.lin.util;
+package com.jlu.common.util;
 
 import java.util.List;
 
 import com.github.pagehelper.Page;
-import com.lin.util.PagedResult;
 
 /**
  * 功能概要：

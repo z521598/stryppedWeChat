@@ -1,4 +1,4 @@
-package com.lin.common;
+package com.jlu.common.web;
 
 public class HttpConstants {
 

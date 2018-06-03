@@ -1,4 +1,4 @@
-package com.lin.dto;
+package com.jlu.common.dto;
 
 
 import java.io.Serializable;

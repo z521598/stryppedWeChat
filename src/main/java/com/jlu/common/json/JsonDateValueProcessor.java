@@ -1,4 +1,4 @@
-package com.lin.json;
+package com.jlu.common.json;
 
 import net.sf.json.JsonConfig;
 import net.sf.json.processors.JsonValueProcessor;

@@ -1,8 +1,7 @@
-package com.lin.util;
+package com.jlu.common.util;
 
 import java.util.List;
-
-import com.lin.dto.BaseEntity;
+import com.jlu.common.dto.BaseEntity;
 
 /**
  * 功能概要：

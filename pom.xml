@@ -173,6 +173,18 @@
 			<artifactId>hibernate-validator</artifactId>
 			<version>5.0.1.Final</version>
 		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>2.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.0.1</version>
+			<scope>provided</scope>
+		</dependency>
 
 	</dependencies>
 
@@ -275,12 +287,12 @@
 			<properties>
 				<!-- 数据库源设置 -->
 				<jdbc_driverClassName>com.mysql.jdbc.Driver</jdbc_driverClassName>
-				<jdbc_url>jdbc:mysql://localhost:3308/learning</jdbc_url>
+				<jdbc_url>jdbc:mysql://localhost:3308/stryppedWeChat</jdbc_url>
 				<jdbc_username>root</jdbc_username>
 				<jdbc_password>mysql</jdbc_password>
                 <!-- 日志打印的设置 -->
-				<log.moduleName>ssm-project</log.moduleName>
-				<log.base>D:\Workspace2018\wechat\ssm_project\ssm_project\logs</log.base>
+				<log.moduleName>stryppedWeChat</log.moduleName>
+				<log.base>D:\Workspace2018\stryppedWeChat\logs</log.base>
 				<log.other.level>DEBUG</log.other.level>
 				<log.root.level>DEBUG</log.root.level>
 				<log.stdout.ref><![CDATA[<appender-ref ref="stdout" />]]></log.stdout.ref>
