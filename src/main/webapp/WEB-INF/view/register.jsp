@@ -5,7 +5,7 @@
 <head>
 
     <title>公众号注册页面</title>
-    <script src="<%=request.getContextPath()%>/static/js/jQuery/jquery-2.1.4.min.js"></script>
+    <script src="/resources/js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript">
         //封装正确/错误效验
         function right() {
@@ -64,7 +64,7 @@
         }
         function AJAXTestUsername() {
             $.get("/user/query.json?username=" + $("#username").val(), function (data) {
-                        return testFont($("#username").val().trim().length >= 5, "#ilab", "不得少于5位") && testFont(!data.success, "#ilab", "用户名重复");
+                        return testFont($("#username").val().trim().length >= 5, "#ilab", "不得少于5位") && testFont(data.success, "#ilab", "用户名重复");
                     }
             );
         }

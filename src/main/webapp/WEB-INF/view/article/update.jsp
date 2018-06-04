@@ -40,7 +40,7 @@
         </tr>
         <tr>
             <td>摘要：</td>
-            <td><textarea name="abstract" rows="10" cols="100">${article.abstractinfo}</textarea></td>
+            <td><textarea name="abstractinfo" rows="10" cols="100">${article.abstractinfo}</textarea></td>
         </tr>
         <tr>
             <td>展示面：</td>
