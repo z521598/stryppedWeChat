@@ -13,6 +13,7 @@ public class Category {
 
     private Long articleid;
 
+    @Deprecated
     private String url;
 
     private Integer userid;
@@ -89,5 +90,21 @@ public class Category {
 
     public void setOrdernumber(Integer ordernumber) {
         this.ordernumber = ordernumber;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Category{");
+        sb.append("id=").append(id);
+        sb.append(", name='").append(name).append('\'');
+        sb.append(", type='").append(type).append('\'');
+        sb.append(", pid=").append(pid);
+        sb.append(", level=").append(level);
+        sb.append(", articleid=").append(articleid);
+        sb.append(", url='").append(url).append('\'');
+        sb.append(", userid=").append(userid);
+        sb.append(", ordernumber=").append(ordernumber);
+        sb.append('}');
+        return sb.toString();
     }
 }

@@ -41,11 +41,11 @@ public class ArticleController extends BaseController {
         return "redirect:all";
     }
 
-    @RequestMapping(value = "/update/{articleId}",method = RequestMethod.GET)
+    @RequestMapping(value = "/update/{articleId}", method = RequestMethod.GET)
     public ModelAndView updateView(@PathVariable Long articleId) {
         ModelAndView mav = new ModelAndView();
         Article article = articleService.get(articleId);
-        mav.addObject("article",article);
+        mav.addObject("article", article);
         mav.setViewName("/article/update");
         return mav;
     }
@@ -55,12 +55,12 @@ public class ArticleController extends BaseController {
     public ModelAndView one(@PathVariable Long articleId) {
         ModelAndView mav = new ModelAndView();
         Article article = articleService.get(articleId);
-        mav.addObject("article",article);
+        mav.addObject("article", article);
         mav.setViewName("/article/one");
         return mav;
     }
 
-    @RequestMapping(value = "/delete/{articleId}.json",method = RequestMethod.GET)
+    @RequestMapping(value = "/delete/{articleId}.json", method = RequestMethod.GET)
     @ResponseBody
     public ResponseBean delete(@PathVariable Long articleId) {
         articleService.delete(articleId);
@@ -72,8 +72,16 @@ public class ArticleController extends BaseController {
         ModelAndView modelAndView = new ModelAndView();
         Integer userId = UserLoginHelper.getLoginUser().getId();
         List<Article> articles = articleService.getByUserId(userId);
-        modelAndView.addObject("articles",articles);
+        modelAndView.addObject("articles", articles);
         modelAndView.setViewName("article/all");
         return modelAndView;
+    }
+
+    @RequestMapping("/all.json")
+    @ResponseBody
+    public List<Article> allJson() {
+        Integer userId = UserLoginHelper.getLoginUser().getId();
+        List<Article> articles = articleService.getByUserId(userId);
+        return articles;
     }
 }

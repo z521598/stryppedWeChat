@@ -3,7 +3,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-
     <title>公众号注册页面</title>
     <script src="/resources/js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript">

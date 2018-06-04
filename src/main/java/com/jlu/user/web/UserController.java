@@ -36,7 +36,7 @@ public class UserController extends BaseController {
         userService.saveOrUpdateUser(user);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("user", userService.getUserByName(UserLoginHelper.getLoginUserName()));
-        System.out.println(user);
+
         modelAndView.setViewName("user/one");
         return modelAndView;
     }
@@ -58,7 +58,6 @@ public class UserController extends BaseController {
         ModelAndView modelAndView = new ModelAndView();
         User user = userService.getUserByName(UserLoginHelper.getLoginUserName());
         modelAndView.addObject("user", user);
-        System.out.println(user);
         modelAndView.setViewName("user/one");
         return modelAndView;
     }

@@ -1,6 +1,9 @@
 package com.jlu.category.dao;
 
 import com.jlu.category.model.Category;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface CategoryMapper {
     int deleteByPrimaryKey(Long id);
@@ -14,4 +17,8 @@ public interface CategoryMapper {
     int updateByPrimaryKeySelective(Category record);
 
     int updateByPrimaryKey(Category record);
+
+    void deleteByUserId(@Param("userId") Integer userId);
+
+    List<Category> selectByUserId(@Param("userId")Integer userId);
 }
