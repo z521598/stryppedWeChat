@@ -47,7 +47,7 @@
 }
 
 .nav {
-    background-image: url(../img/sellMain_img/sellMain_images/navbg.png);
+
     margin: 0;
     padding-left: 16%;
     border-bottom: 1px solid #d3d1d1;
@@ -115,8 +115,4 @@
     text-decoration: none;
     color: white !important;
     cursor: pointer;
-}
-
-.content {
-    margin;
 }

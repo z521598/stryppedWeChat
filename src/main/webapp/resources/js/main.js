@@ -12,7 +12,7 @@ $("#article").click(function(){
 	$("#ifr").attr("src","article/all");
 });
 $("#category").click(function(){
-	$("#ifr").attr("src","category/all");
+	$("#ifr").attr("src","category/currentUser");
 });
 $("#user").click(function(){
 	$("#ifr").attr("src","user/currentUser");
