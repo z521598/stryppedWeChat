@@ -17,6 +17,8 @@ public class Category {
 
     private Integer userid;
 
+    private Integer ordernumber;
+
     public Long getId() {
         return id;
     }
@@ -79,5 +81,13 @@ public class Category {
 
     public void setUserid(Integer userid) {
         this.userid = userid;
+    }
+
+    public Integer getOrdernumber() {
+        return ordernumber;
+    }
+
+    public void setOrdernumber(Integer ordernumber) {
+        this.ordernumber = ordernumber;
     }
 }
