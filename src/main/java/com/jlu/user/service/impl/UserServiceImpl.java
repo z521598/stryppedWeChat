@@ -29,15 +29,15 @@ public class UserServiceImpl implements IUserService{
 
     @Override
     public User getUserByNameAndPwd(String username, String password) {
-
-        return null;
+        return userMapper.selectByUsernameAndPwd(username,password);
     }
 
 
 
     @Override
     public User getUserByName(String username) {
-        return null;
+
+        return userMapper.selectByUsername(username);
     }
 
     @Override

@@ -5,13 +5,7 @@
 <head>
 
     <title>公众号注册页面</title>
-
-    <meta http-equiv="pragma" content="no-cache">
-    <meta http-equiv="cache-control" content="no-cache">
-    <meta http-equiv="expires" content="0">
-    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-    <meta http-equiv="description" content="This is my page">
-    <script type="text/javascript" src="/resources/js/jquery-1.9.1.min.js"></script>
+    <script src="<%=request.getContextPath()%>/static/js/jQuery/jquery-2.1.4.min.js"></script>
     <script type="text/javascript">
         //封装正确/错误效验
         function right() {
@@ -69,8 +63,8 @@
             return test($("#birthday").val().match("(([0-9]{3}[1-9]|[0-9]{2}[1-9][0-9]{1}|[0-9]{1}[1-9][0-9]{2}|[1-9][0-9]{3})-(((0[13578]|1[02])-(0[1-9]|[12][0-9]|3[01]))|((0[469]|11)-(0[1-9]|[12][0-9]|30))|(02-(0[1-9]|[1][0-9]|2[0-8]))))|((([0-9]{2})(0[48]|[2468][048]|[13579][26])|((0[48]|[2468][048]|[3579][26])00))-02-29)"), "#blab");
         }
         function AJAXTestUsername() {
-            $.get("user/query?username=" + $("#username").val(), function (data) {
-                        return testFont($("#username").val().trim().length >= 5, "#ilab", "不得少于5位") && testFont(!data, "#ilab", "用户名重复");
+            $.get("/user/query.json?username=" + $("#username").val(), function (data) {
+                        return testFont($("#username").val().trim().length >= 5, "#ilab", "不得少于5位") && testFont(!data.success, "#ilab", "用户名重复");
                     }
             );
         }

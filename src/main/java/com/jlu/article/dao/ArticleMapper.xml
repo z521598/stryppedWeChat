@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jlu.article.dao.ArticleMapper" >
+  <resultMap id="BaseResultMap" type="com.jlu.article.model.Article" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="abstractinfo" property="abstractinfo" jdbcType="VARCHAR" />
+    <result column="imagepath" property="imagepath" jdbcType="VARCHAR" />
+    <result column="date" property="date" jdbcType="TIMESTAMP" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="pv" property="pv" jdbcType="BIGINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.jlu.article.model.Article" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARBINARY" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, abstractinfo, imagepath, date, userId, pv
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from article
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+  <select id="selectByUserId" resultMap="ResultMapWithBLOBs"  parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from article
+    where userId = #{userId,jdbcType=INTEGER}
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from article
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.jlu.article.model.Article" >
+    insert into article (id, name, abstractinfo, 
+      imagepath, date, userId, 
+      pv, content)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{abstractinfo,jdbcType=VARCHAR}, 
+      #{imagepath,jdbcType=VARCHAR}, #{date,jdbcType=TIMESTAMP}, #{userid,jdbcType=INTEGER}, 
+      #{pv,jdbcType=BIGINT}, #{content,jdbcType=LONGVARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jlu.article.model.Article" >
+    insert into article
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="abstractinfo != null" >
+        abstractinfo,
+      </if>
+      <if test="imagepath != null" >
+        imagepath,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="pv != null" >
+        pv,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="abstractinfo != null" >
+        #{abstractinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="imagepath != null" >
+        #{imagepath,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="pv != null" >
+        #{pv,jdbcType=BIGINT},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jlu.article.model.Article" >
+    update article
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="abstractinfo != null" >
+        abstractinfo = #{abstractinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="imagepath != null" >
+        imagepath = #{imagepath,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        date = #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="pv != null" >
+        pv = #{pv,jdbcType=BIGINT},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.jlu.article.model.Article" >
+    update article
+    set name = #{name,jdbcType=VARCHAR},
+      abstractinfo = #{abstractinfo,jdbcType=VARCHAR},
+      imagepath = #{imagepath,jdbcType=VARCHAR},
+      date = #{date,jdbcType=TIMESTAMP},
+      userId = #{userid,jdbcType=INTEGER},
+      pv = #{pv,jdbcType=BIGINT},
+      content = #{content,jdbcType=LONGVARBINARY}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jlu.article.model.Article" >
+    update article
+    set name = #{name,jdbcType=VARCHAR},
+      abstractinfo = #{abstractinfo,jdbcType=VARCHAR},
+      imagepath = #{imagepath,jdbcType=VARCHAR},
+      date = #{date,jdbcType=TIMESTAMP},
+      userId = #{userid,jdbcType=INTEGER},
+      pv = #{pv,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

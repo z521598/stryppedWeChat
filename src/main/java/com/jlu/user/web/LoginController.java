@@ -1,6 +1,7 @@
 package com.jlu.user.web;
 
 
+import com.jlu.common.permission.annotations.PermissionPass;
 import com.jlu.common.web.BaseController;
 import com.jlu.user.model.User;
 import com.jlu.user.service.IUserService;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
  * Created by Administrator on 2018/4/19.
  */
 
+@PermissionPass
 @Controller
 @RequestMapping("/user")
 public class LoginController extends BaseController {

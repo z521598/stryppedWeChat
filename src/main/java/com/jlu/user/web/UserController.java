@@ -1,13 +1,18 @@
 package com.jlu.user.web;
 
 
+import com.jlu.common.interceptor.UserLoginHelper;
+import com.jlu.common.permission.annotations.PermissionPass;
 import com.jlu.common.web.BaseController;
+import com.jlu.common.web.ResponseBean;
 import com.jlu.user.model.User;
 import com.jlu.user.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by Administrator on 2018/4/19.
@@ -19,34 +24,39 @@ public class UserController extends BaseController {
     @Autowired
     IUserService userService;
 
-
+    @PermissionPass
     @RequestMapping(value = "", method = RequestMethod.POST)
     public String login(User user) {
         userService.saveOrUpdateUser(user);
-        return "forward:/user/login";
+        return "redirect:/user/login";
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String update(User user) {
+    public ModelAndView update(User user) {
         userService.saveOrUpdateUser(user);
-        return "";
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("user", userService.getUserByName(UserLoginHelper.getLoginUserName()));
+        System.out.println(user);
+        modelAndView.setViewName("user/one");
+        return modelAndView;
     }
 
-    @RequestMapping(value = "/query", method = RequestMethod.GET)
+    @PermissionPass
+    @RequestMapping(value = "/query.json", method = RequestMethod.GET)
     @ResponseBody
-    public Boolean query(String username) {
+    public ResponseBean query(String username) {
         User user = userService.getUserByName(username);
         if (user == null) {
-            return false;
+            return ResponseBean.TRUE;
         } else {
-            return true;
+            return ResponseBean.fail("");
         }
     }
 
-    @RequestMapping(value = "/{username}", method = RequestMethod.GET)
-    public ModelAndView all(@PathVariable String username) {
+    @RequestMapping(value = "/currentUser", method = RequestMethod.GET)
+    public ModelAndView all() {
         ModelAndView modelAndView = new ModelAndView();
-        User user = userService.getUserByName(username);
+        User user = userService.getUserByName(UserLoginHelper.getLoginUserName());
         modelAndView.addObject("user", user);
         System.out.println(user);
         modelAndView.setViewName("user/one");
