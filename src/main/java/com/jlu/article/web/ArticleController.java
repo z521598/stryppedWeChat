@@ -22,6 +22,7 @@ import java.util.List;
 /**
  * Created by Administrator on 2018/6/4.
  */
+@PermissionPass
 @Controller
 @RequestMapping("/article")
 public class ArticleController extends BaseController {
@@ -85,6 +86,7 @@ public class ArticleController extends BaseController {
         modelAndView.setViewName("article/all");
         return modelAndView;
     }
+
 
     @RequestMapping("/all.json")
     @ResponseBody

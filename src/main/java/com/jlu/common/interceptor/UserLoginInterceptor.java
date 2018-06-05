@@ -18,10 +18,6 @@ public class UserLoginInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object o)
             throws Exception {
-        if (permissionService.isStaticResource(request)) {
-            return true;
-        }
-
         UserLoginHelper.register(UserLoginHelper.getLoginUser(request));
         return true;
     }

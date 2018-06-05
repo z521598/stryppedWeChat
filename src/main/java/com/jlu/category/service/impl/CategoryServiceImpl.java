@@ -93,7 +93,7 @@ public class CategoryServiceImpl implements ICategoryService {
     private List<Category> getChild(List<Category> categories,Long pid){
         List<Category> childCategoryList = new LinkedList<>();
         for(Category category : categories){
-            if(category.getPid() == pid){
+            if(category.getPid().equals(pid)){
                 childCategoryList.add(category);
             }
         }

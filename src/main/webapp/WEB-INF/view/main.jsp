@@ -15,7 +15,7 @@
             <label class="logo-title">公众号后台管理中心</label>
             <ul class="inline">
                 <li>
-                    <a href="/${currentUser.id}" target="_blank">查看我的公众号</a>
+                    <a href="/public/${currentUser.id}" target="_blank">查看我的公众号</a>
                 </li>
                 <li>&nbsp;&nbsp;欢迎您,尊贵的${currentUser.name}</li>
                 <li>

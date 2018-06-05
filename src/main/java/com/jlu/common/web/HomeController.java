@@ -30,6 +30,7 @@ public class HomeController {
         return "login";
     }
 
+
     @RequestMapping({"/", ""})
     public String home() {
         return "main";
@@ -41,7 +42,8 @@ public class HomeController {
         return "login";
     }
 
-    @RequestMapping("/{userid}")
+    @PermissionPass
+    @RequestMapping("/public/{userid}")
     public String userPublic(Model model, @PathVariable Integer userid) {
         List<CategoryBean> categories = categoryService.getCategoryBeanList(userid);
         model.addAttribute("categories", categories);

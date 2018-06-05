@@ -23,7 +23,7 @@
                         '<p class="abs-title"><b>' + article.name + '</b></p>' +
                         '<img class="abs-image"src="' + article.imagepath + '"/>' +
                         '<div class="abs-info">' +
-                        article.abstractinfo +
+                        (article.abstractinfo == undefined ? '无': article.abstractinfo) +
                         '</div></a></div>';
                 $("#content").append(abs);
             });

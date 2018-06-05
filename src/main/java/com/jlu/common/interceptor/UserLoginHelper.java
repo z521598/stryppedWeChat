@@ -21,6 +21,9 @@ public class UserLoginHelper {
      * @param user
      */
     public static void register(User user) {
+        if (user == null) {
+            return;
+        }
         USER_TL.set(user);
     }
 
@@ -40,8 +43,8 @@ public class UserLoginHelper {
 
     public static User getLoginUser(HttpServletRequest request) {
 
-            HttpSession session = request.getSession();
-            Object user= session.getAttribute(User.CURRENT_USER_NAME);
+        HttpSession session = request.getSession();
+        Object user = session.getAttribute(User.CURRENT_USER_NAME);
 
         if (user instanceof com.jlu.user.model.User) {
             return (com.jlu.user.model.User) user;

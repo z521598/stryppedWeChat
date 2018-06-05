@@ -73,6 +73,8 @@ public class PermissionServiceImpl implements IPermissionService {
                 || request.getRequestURL().indexOf("resource/") > 0
                 || request.getRequestURL().indexOf("favicon.ico") > 0
                 || request.getRequestURL().indexOf("webjars") > 0
+                || request.getRequestURL().indexOf("public/") > 0
+                || request.getRequestURL().indexOf("article/") > 0
                 || request.getRequestURL().indexOf("jsp") > 0;
 
     }
