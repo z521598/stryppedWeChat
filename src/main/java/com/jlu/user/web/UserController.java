@@ -28,7 +28,7 @@ public class UserController extends BaseController {
     @RequestMapping(value = "", method = RequestMethod.POST)
     public String login(User user) {
         userService.saveOrUpdateUser(user);
-        return "redirect:/user/login";
+        return "redirect:/login";
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
