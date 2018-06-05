@@ -6,17 +6,43 @@
     <script type="text/javascript">
         $(function () {
             $.get("/article/all.json", function (articles) {
-                var opts = "";
+                var opts = "<option value='0'></option>";
                 for (var index in articles) {
                     opts += "<option value='" + articles[index].id + "'>" + articles[index].name + "</option>"
                 }
                 var selects = $("select");
-                console.log(selects.length);
                 for (var index in selects) {
                     var select = selects[index];
                     select.innerHTML = opts;
                 }
 
+                $.get("/category/all.json", function (categories) {
+                    for (var index in categories) {
+                        var category = categories[index];
+                        var i = category.ordernumber;
+                        var name = category.name;
+                        var childCategories = category.childCategory;
+                        var articleid = category.articleid;
+                        if (articleid == 0) {
+                            $("#pc" + i + "articleid").val(" ");
+                        } else {
+                            $("#pc" + i + "articleid option[value='" + articleid + "']").attr("selected", true);
+                        }
+                        $("#pc" + i + "name").val(name);
+                        $("#pc" + i + "checkbox").prop('checked', true);
+                        if (childCategories != undefined && childCategories != null && childCategories.length != 0) {
+                            for (var childIndex in childCategories) {
+                                var childCategory = childCategories[childIndex];
+                                var j = childCategory.ordernumber;
+                                var name = childCategory.name;
+                                var articleid = childCategory.articleid;
+                                $("#pc" + i + "c" + j + "name").val(name);
+                                $("#pc" + i + "c" + j + "checkbox").prop('checked', true);
+                                $("#pc" + i + "c" + j + "articleid option[value='" + articleid + "']").attr("selected", true);
+                            }
+                        }
+                    }
+                });
             });
         });
 
@@ -51,7 +77,8 @@
                 contentType: "application/json; charset=utf-8",
                 data: JSON.stringify(category),
                 complete: function (data) {
-                    alert(data);
+                    alert("修改成功");
+                    window.location.reload();
                 }
             });
         }
