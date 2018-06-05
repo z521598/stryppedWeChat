@@ -47,7 +47,7 @@ public class ArticleServiceImpl implements IArticleService {
 
 
     private String uploadFile(HttpServletRequest request, MultipartFile conclusionFilePath, Article article) throws IOException {
-        String url = request.getSession().getServletContext().getRealPath("article");
+        String url = request.getSession().getServletContext().getRealPath("resources");
         // 如果没有该路径，自动创建
         File floder = new File(url);
         if (!floder.exists()) {
@@ -67,7 +67,7 @@ public class ArticleServiceImpl implements IArticleService {
                 .lastIndexOf("."));
         // 保存图片
         conclusionFilePath.transferTo(new File(url, fileName));
-        return "article/" + fileName;
+        return "/resources/" + fileName;
 
     }
 

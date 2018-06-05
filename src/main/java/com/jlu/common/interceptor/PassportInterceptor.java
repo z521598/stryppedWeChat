@@ -43,27 +43,27 @@ public class PassportInterceptor implements HandlerInterceptor {
             response.sendRedirect("/login");
             return false;
         }
-        String username = user.getUsername();
-        // 管理员放行
-        // 校验具体的资源权限
-        if (handler instanceof HandlerMethod) {
-            // 普通用户不允许访问管理员url
-            if (permissionService.getAdminUrlList().contains(uri)) {
-                throw new ForbiddenException("这根香蕉你没权限吃，请联系管理员");
-            }
-            // REST传值鉴权
-            Map<String, String> restParam =
-                    (Map) request.getAttribute(HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE);
-            if (restParam != null && restParam.size() != 0) {
-                Boolean res = permissionService.checkSourcePermission(restParam, username);
-                if (res == false) {
-                    throw new ForbiddenException("你没权限吃其他人的香蕉");
-                }
-                return true;
-            } else {
-                return true;
-            }
-        }
+//        String username = user.getUsername();
+//        // 管理员放行
+//        // 校验具体的资源权限
+//        if (handler instanceof HandlerMethod) {
+//            // 普通用户不允许访问管理员url
+//            if (permissionService.getAdminUrlList().contains(uri)) {
+//                throw new ForbiddenException("这根香蕉你没权限吃，请联系管理员");
+//            }
+//            // REST传值鉴权
+//            Map<String, String> restParam =
+//                    (Map) request.getAttribute(HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE);
+//            if (restParam != null && restParam.size() != 0) {
+//                Boolean res = permissionService.checkSourcePermission(restParam, username);
+//                if (res == false) {
+//                    throw new ForbiddenException("你没权限吃其他人的香蕉");
+//                }
+//                return true;
+//            } else {
+//                return true;
+//            }
+//        }
         return true;
     }
 

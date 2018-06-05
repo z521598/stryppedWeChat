@@ -60,6 +60,15 @@ public class ArticleController extends BaseController {
         return mav;
     }
 
+    @PermissionPass
+    @RequestMapping(value = "/{articleId}.json")
+    @ResponseBody
+    public Article oneJson(@PathVariable Long articleId) {
+        Article article = articleService.get(articleId);
+        return article;
+    }
+
+
     @RequestMapping(value = "/delete/{articleId}.json", method = RequestMethod.GET)
     @ResponseBody
     public ResponseBean delete(@PathVariable Long articleId) {

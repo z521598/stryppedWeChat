@@ -44,4 +44,5 @@ public class CategoryController {
     public List<CategoryBean> all(){
         return categoryService.getCategoryBeanList(UserLoginHelper.getLoginUser().getId());
     }
+
 }

@@ -32,11 +32,11 @@ public class UserController extends BaseController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public ModelAndView update(User user) {
+    public ModelAndView update(User user, HttpServletRequest request) {
         userService.saveOrUpdateUser(user);
+        request.getSession().setAttribute(User.CURRENT_USER_NAME, user);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("user", userService.getUserByName(UserLoginHelper.getLoginUserName()));
-
         modelAndView.setViewName("user/one");
         return modelAndView;
     }

@@ -1,0 +1,24 @@
+.abs-div {
+    width: 50%;
+    height: 150px;
+    overflow: hidden;
+    margin: 0 auto;
+    border: 1px solid #8B8682;
+}
+
+.abs-title {
+    text-align: center;
+    font-size: medium;
+    color: #00008B;
+}
+
+.abs-image {
+    vertical-align: middle;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+}
+
+.abs-info {
+    margin: auto 10px auto 110px;
+}
